@@ -12,6 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@DataJpaTest
 class StudentRepositoryTest {
     @Autowired
     private StudentRepository studentRepository;
@@ -65,21 +66,25 @@ class StudentRepositoryTest {
 
     @Test
     public void printStudentBasedOnGuardianName() {
-       Student students = studentRepository.findByGuardianName("mizan");
-        System.out.println("Student : " + students);
-    } @Test
-    public void printStudentBasedOnFirstNameAndLastName() {
-        List<Student> students = studentRepository.findByFirstNameAndLastName("M R","mizan");
+        Student students = studentRepository.findByGuardianName("mizan");
         System.out.println("Student : " + students);
     }
+
+    @Test
+    public void printStudentBasedOnFirstNameAndLastName() {
+        List<Student> students = studentRepository.findByFirstNameAndLastName("M R", "mizan");
+        System.out.println("Student : " + students);
+    }
+
     @Test
     public void printStudentByEmailAddress() {
-       Student student = studentRepository.getStudentByEmailAddress("mizan@gmail.com");
+        Student student = studentRepository.getStudentByEmailAddress("mizan@gmail.com");
         System.out.println("Student : " + student);
     }
+
     @Test
     public void printStudentFirstNameByEmailAddress() {
-       String student = studentRepository.getStudentFirstNameByEmailAddress("mizan@gmail.com");
+        String student = studentRepository.getStudentFirstNameByEmailAddress("mizan@gmail.com");
         System.out.println("Student : " + student);
     }
 
@@ -87,9 +92,21 @@ class StudentRepositoryTest {
     public void printStudentByEmailAddressNative() {
         Student student = studentRepository.getStudentByEmailAddressNative("mizan@gmail.com");
         System.out.println("Student : " + student);
-    }@Test
+    }
+
+    @Test
     public void printStudentByEmailAddressNativeParam() {
         Student student = studentRepository.getStudentByEmailAddressNativeNamedParam("mizan@gmail.com");
         System.out.println("Student : " + student);
+    }
+
+    @Test
+    public void updateStudentFirstNameByEmailId() {
+        studentRepository.updateStudentNameByEmailId("Mizan2", "mizan@gmail.com");
+    }
+
+    @Test
+    public void deleteStudentByEmailId() {
+        studentRepository.deleteStudentByEmailId("shivan@gmail.com");
     }
 }
