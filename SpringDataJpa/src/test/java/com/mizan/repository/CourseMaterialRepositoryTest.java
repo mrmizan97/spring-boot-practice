@@ -22,7 +22,7 @@ class CourseMaterialRepositoryTest {
                 .credit(3)
                 .build();
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("www.w3school.com")
+                .url("www.geeksforgeeks.com")
                 .course(course).build();
         courseMaterialRepository.save(courseMaterial);
     }
