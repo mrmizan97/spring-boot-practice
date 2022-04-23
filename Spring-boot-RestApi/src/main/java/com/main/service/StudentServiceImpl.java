@@ -21,4 +21,29 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> fetchAllStudents() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public Student findById(Long id) {
+        return studentRepository.findById(id).get();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        studentRepository.deleteById(id);
+    }
+
+    @Override
+    public Student update(Student student, Long id) {
+        Student studentDB = studentRepository.findById(id).get();
+        studentDB.setName(student.getName());
+        studentDB.setEmail(student.getEmail());
+        studentDB.setCourse(student.getCourse());
+        return studentRepository.save(studentDB);
+
+    }
+
+    @Override
+    public Student findByName(String name) {
+        return studentRepository.findByNameIgnoreCase(name);
+    }
 }

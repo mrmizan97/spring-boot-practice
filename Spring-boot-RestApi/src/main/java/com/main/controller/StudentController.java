@@ -22,4 +22,25 @@ public class StudentController {
     public Student store(@RequestBody Student student) {
         return studentService.store(student);
     }
+
+    @GetMapping("{id}")
+    public Student findById(@PathVariable("id") Long id) {
+        return studentService.findById(id);
+    }
+
+    @GetMapping("{name}")
+    public Student findByName(@PathVariable("name") String name) {
+        return studentService.findByName(name);
+    }
+
+    @PutMapping("update/{id}")
+    public Student update(@PathVariable("id") Long id, @RequestBody Student student) {
+        return studentService.update(student, id);
+    }
+
+    @DeleteMapping("{id}")
+    public String deletById(@PathVariable("id") Long id) {
+        studentService.deleteById(id);
+        return "Student whose id=" + id + " deleted.";
+    }
 }
